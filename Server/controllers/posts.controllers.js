@@ -50,7 +50,15 @@ const getFollowingPosts = async (req, res) => {
         }
 
         const search = req.body.search
-        const posts = postsFromFollowedUsers.find({ $or: [{auther : search}, {genere : search}, {name : search}]})
+        
+        if(!search === ''){
+            
+            const posts = await postsFromFollowedUsers.find({ $or: [{author : {$regex :'^search'}}, {genere : {$regex : '^search'}}, {name : {$regex : '^search'}}]})
+            res.send(posts);
+
+        }else{
+            res.send(postsFromFollowedUsers)
+        }
 
         res.send(posts);
 }
