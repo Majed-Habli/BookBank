@@ -17,13 +17,12 @@ const userSchema = new mongoose.Schema({
     },
     password: String,
     posts:[bookSchema],
-    // following: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: "User",
-    //         default: 0,
-    //     }
-    // ],
+    following: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],
 })
 
 const model = mongoose.model("User", userSchema)

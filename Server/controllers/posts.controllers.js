@@ -10,7 +10,7 @@ try {
     const user = await User.findById(req.user._id);
     
     const newPost = {name, author, review, genere, count_like: 0}
-    // res.send(newPost)
+    
     const updatedUser = await User.updateOne({
         email: req.user.email,
     }, {
@@ -28,7 +28,7 @@ try {
 
         console.error(error);
         res.status(500).send("An error occurred");
-        
+
     }
 }
 
