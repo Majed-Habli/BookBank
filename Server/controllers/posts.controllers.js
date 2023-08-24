@@ -1,5 +1,4 @@
 const User = require("../models/users.model")
-const Book = require("../models/users.model")
 
 const createPost = async (req, res)=>{
 
@@ -33,11 +32,30 @@ try {
     }
 }
 
-const likePost = async (req, res) => {
-    const post_id = await Book.findById(req.body.id);
-    console.log("this is the post id", post_id);
+const getFollowingPosts = async (req, res) => {
+    const user = await User.findById(req.user._id)
+    console.log("user", user)
+
+    const user_following = user.following
+    console.log("im following", user_following)
+
+    // const post_id = await Book.findById(req.body.id);
+    const following = await User.find({_id : user_following._id})
+    console.log("the people data i follow", following)
+
+    const postsFromFollowedUsers = [];
+
+        for (const followingUser of following) {
+            console.log("inner for loop ", followingUser)
+            postsFromFollowedUsers.push(...followingUser.posts);
+        }
+
+        res.send(postsFromFollowedUsers);
+
+    // if(user.following.includes)
+    // console.log("this is the post id", post_id);
 }
 
 
 
-module.exports = {createPost, likePost}
+module.exports = {createPost, getFollowingPosts}
