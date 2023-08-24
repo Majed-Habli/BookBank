@@ -1,5 +1,14 @@
 const mongoose = require("mongoose");
 
+const bookSchema = new mongoose.Schema({
+    name: String,
+    author: String,
+    genere: String,
+    review: String,
+    // image: String,
+    count_like: Number
+})
+
 const userSchema = new mongoose.Schema({
     name: String,
     email: {
@@ -7,22 +16,14 @@ const userSchema = new mongoose.Schema({
         require: "Custom: Email is required"
     },
     password: String,
-    post:[bookSchema],
-    following: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
-    ],
-})
-
-const bookSchema = new mangoose.Schema({
-    name: String,
-    author: String,
-    genere: String,
-    review: String,
-    image: string,
-    count_like: int
+    posts:[bookSchema],
+    // following: [
+    //     {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: "User",
+    //         default: 0,
+    //     }
+    // ],
 })
 
 const model = mongoose.model("User", userSchema)

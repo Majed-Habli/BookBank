@@ -13,8 +13,9 @@ app.use("/auth", authRouter)
 const usersRouter = require("./routes/users.routes");
 app.use("/users", authMiddleware, usersRouter)
 
-const PostsRouter = require("./routes/stays.routes");
-app.use("/posts", PostsRouter)
+const postsRouter = require("./routes/posts.routes");
+app.use("/posts", authMiddleware, postsRouter)
+
 
 app.listen(8000, (err)=>{
     if(err){

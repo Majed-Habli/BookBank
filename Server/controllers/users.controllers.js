@@ -10,4 +10,4 @@ const getAllUsers = async (req, res)=>{
 //     res.send(user)
 // }
 
-module.exports = {getAllUsers, getProfile}
+module.exports = {getAllUsers}
