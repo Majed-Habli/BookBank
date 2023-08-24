@@ -49,7 +49,10 @@ const getFollowingPosts = async (req, res) => {
             postsFromFollowedUsers.push(...followingUser.posts);
         }
 
-        res.send(postsFromFollowedUsers);
+        const search = req.body.search
+        const posts = postsFromFollowedUsers.find({ $or: [{auther : search}, {genere : search}, {name : search}]})
+
+        res.send(posts);
 }
 
 
