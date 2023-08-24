@@ -5,11 +5,6 @@ const getAllUsers = async (req, res)=>{
     res.send(users)
 }
 
-// const getProfile = async (req, res)=>{
-//     const user = await User.findById(req.user._id)
-//     res.send(user)
-// }
-
 const followPeople = async (req, res) =>{
     const user = await User.findById(req.user._id);
 

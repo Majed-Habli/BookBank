@@ -1,4 +1,5 @@
 const User = require("../models/users.model")
+const Book = require("../models/users.model")
 
 const createPost = async (req, res)=>{
 
@@ -32,6 +33,11 @@ try {
     }
 }
 
+const likePost = async (req, res) => {
+    const post_id = await Book.findById(req.body.id);
+    console.log("this is the post id", post_id);
+}
 
 
-module.exports = {createPost}
+
+module.exports = {createPost, likePost}
