@@ -39,8 +39,7 @@ const getFollowingPosts = async (req, res) => {
     const user_following = user.following
     console.log("im following", user_following)
 
-    // const post_id = await Book.findById(req.body.id);
-    const following = await User.find({_id : user_following._id})
+    const following = await User.find({_id : { $in: user_following }} )
     console.log("the people data i follow", following)
 
     const postsFromFollowedUsers = [];
@@ -51,9 +50,6 @@ const getFollowingPosts = async (req, res) => {
         }
 
         res.send(postsFromFollowedUsers);
-
-    // if(user.following.includes)
-    // console.log("this is the post id", post_id);
 }
 
 
